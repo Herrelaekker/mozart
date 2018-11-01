@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour {
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    public bool facingRight;
+
     private float jumpTimeCounter;
     public float jumpTime;
     private bool isJumping;
@@ -44,10 +46,12 @@ public class PlayerMovement : MonoBehaviour {
         if (moveInput > 0)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
+            facingRight = true;
         }
         else if (moveInput < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+            facingRight = false;
         }
 
         //Hvis man bevæger sig på ground -> Gå animation, ellers Idle animation

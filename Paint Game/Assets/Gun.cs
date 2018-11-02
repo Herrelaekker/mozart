@@ -23,7 +23,7 @@ public class Gun : MonoBehaviour {
 
         if (timeBtwShots <= 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetButton("Fire1"))
             {
                 if (rightDirection)
                 {

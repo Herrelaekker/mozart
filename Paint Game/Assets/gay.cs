@@ -6,6 +6,8 @@ public class gay : MonoBehaviour {
 
     private PlayerMovement player;
 
+    private bool nearbyWall;
+
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -18,11 +20,19 @@ public class gay : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Red" || other.gameObject.tag == "Red Floor")
+        if (other.gameObject.tag == "Ground")
+            nearbyWall = true;
+
+        if (other.gameObject.tag == "Red" && nearbyWall || other.gameObject.tag == "Red Floor" && nearbyWall)
         {
-            if (GetComponentInParent<PlayerMovement>().isGrounded)
-                player.TakeDamge(1);
+            player.TakeDamge(1);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+            nearbyWall = false;
     }
 
 }

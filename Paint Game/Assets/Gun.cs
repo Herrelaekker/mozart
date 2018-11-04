@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour {
 
+    [SerializeField]
+    private Stat paint;
+
     public GameObject[] projectile;
     public Transform shotPoint;
 
@@ -12,33 +15,38 @@ public class Gun : MonoBehaviour {
     private float timeBtwShots;
     public float startTimebtwshots;
 
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    private void Awake()
+    {
+        paint.Initialize();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         rightDirection = GameObject.Find("Player").GetComponent<PlayerMovement>().facingRight;
-
-        if (timeBtwShots <= 0)
+        if (paint.CurVal > 0)
         {
-            if (Input.GetButton("Fire1"))
+            if (timeBtwShots <= 0)
             {
-                if (rightDirection)
+                if (Input.GetButton("Fire1"))
                 {
-                    Instantiate(projectile[0], shotPoint.position, transform.rotation);
+                    if (rightDirection)
+                    {
+                        Instantiate(projectile[0], shotPoint.position, transform.rotation);
+                    }
+                    else
+                    {
+                        Instantiate(projectile[1], shotPoint.position, transform.rotation);
+                    }
+                    timeBtwShots = startTimebtwshots;
+
+                    paint.CurVal -= 1;
                 }
-                else
-                {
-                    Instantiate(projectile[1], shotPoint.position, transform.rotation);
-                }
-                timeBtwShots = startTimebtwshots;
             }
-        }
-        else
-        {
-            timeBtwShots -= Time.deltaTime;
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
         }
 	}
 }

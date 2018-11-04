@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: a4fa9e6875b88fd44a57acd2a8adbf36
+guid: 54f9d70a38e9e5845a42d27a327e0c8a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: main character_0
-    21300002: main character_1
+    21300000: hund_0
+    21300002: hund_1
+    21300004: hund_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -43,11 +44,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 4
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -86,41 +87,61 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: main character_0
+      name: hund_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 425
-        height: 347
-      alignment: 9
-      pivot: {x: 0.35285008, y: 0.48547363}
+        y: 362
+        width: 570
+        height: 229
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd0de3aa74ca7bd429004c79c4db922a
+      spriteID: 444352abcaf07f14e85e6bff60749767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: main character_1
+      name: hund_1
       rect:
         serializedVersion: 2
-        x: 432
-        y: 7
-        width: 425
-        height: 340
-      alignment: 9
-      pivot: {x: 0.3606392, y: 0.46293604}
+        x: 591
+        y: 362
+        width: 570
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab9deb8b567fb24fa30f1802e57e79c
+      spriteID: c2b3390ad4869e94b9758a17c4b14323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hund_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 522
+        height: 361
+      alignment: 9
+      pivot: {x: 0.50502914, y: 0.35455945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443544509eea94a488e4d27a7ba3090f
       vertices: []
       indices: 
       edges: []
@@ -128,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bf7d28b96e15e634380eabf57e658c46
+    spriteID: 9bc6acb8a703e9d439a7ae55e86663f8
     vertices: []
     indices: 
     edges: []

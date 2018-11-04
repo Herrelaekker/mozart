@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -9,7 +10,18 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpForce;
     private float moveInput;
 
-    private bool isGrounded;
+    public int curHealth;
+    public int maxHealth;
+
+    public float invincibilityLength;
+    private float invincibilityCounter;
+
+    private Renderer playerRenderer;
+    private Renderer playerHeadRenderer;
+    private float flashCounter;
+    public float flashLength = 0.1f;
+
+    public bool isGrounded;
     public Transform feetPos;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -26,6 +38,11 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        playerRenderer = GetComponent<Renderer>();
+        playerHeadRenderer = GameObject.Find("Head").GetComponent<Renderer>();
+
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -96,6 +113,55 @@ public class PlayerMovement : MonoBehaviour {
         if (isJumping == false && isGrounded == false)
         {
             anim.SetInteger("state", 3);
+        }
+
+        if (curHealth > maxHealth)
+        {
+            curHealth = maxHealth;
+        }
+        if (curHealth <= 0)
+        {
+            Die();
+        }
+
+        if (invincibilityCounter > 0)
+        {
+            invincibilityCounter -= Time.deltaTime;
+
+            flashCounter -= Time.deltaTime;
+
+            if (flashCounter <= 0)
+            {
+                playerRenderer.enabled = !playerRenderer.enabled;
+                playerHeadRenderer.enabled = !playerHeadRenderer.enabled;
+                flashCounter = flashLength;
+            }
+
+            if(invincibilityCounter <=0)
+            {
+                playerRenderer.enabled = true;
+                playerHeadRenderer.enabled = true;
+            }
+        }
+
+    }
+
+    void Die()
+    {
+        Scene curScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(curScene.name);
+    }
+
+    public void TakeDamge( int dmg)
+    {
+        if (invincibilityCounter <= 0)
+        {
+            curHealth -= dmg;
+
+            invincibilityCounter = invincibilityLength;
+            playerRenderer.enabled = false;
+            playerHeadRenderer.enabled = false;
+            flashCounter = flashLength;
         }
     }
 }
